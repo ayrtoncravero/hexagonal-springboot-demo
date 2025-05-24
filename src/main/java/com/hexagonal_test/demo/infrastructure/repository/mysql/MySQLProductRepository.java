@@ -7,6 +7,7 @@ import com.hexagonal_test.demo.infrastructure.mapper.ProductEntityMapper;
 import com.hexagonal_test.demo.infrastructure.repository.SpringDataProductJpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -29,5 +30,24 @@ public class MySQLProductRepository implements ProductRepository {
     public Optional<Product> findById(Long id) {
         return jpaRepository.findById(id)
                 .map(ProductEntityMapper::toDomain);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return jpaRepository.findAll()
+                .stream()
+                .map(ProductEntityMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public Optional<Product> getOneById(Long id) {
+        return jpaRepository.findById(id)
+                .map(ProductEntityMapper::toDomain);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jpaRepository.deleteById(id);
     }
 }

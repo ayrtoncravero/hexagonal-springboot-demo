@@ -1,4 +1,4 @@
-package com.hexagonal_test.demo.infrastructure.dto;
+package com.hexagonal_test.demo.infrastructure.dto.request;
 
 import java.math.BigDecimal;
 
